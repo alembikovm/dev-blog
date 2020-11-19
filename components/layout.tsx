@@ -1,12 +1,17 @@
 import Head from "next/head";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
+import styles from "./layout.module.scss";
+import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
 
 const name = "Marat Alembikov";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children, home }) {
+interface Props {
+  home?: boolean;
+  children?: JSX.Element | JSX.Element[];
+}
+
+export default function Layout({ children, home }: Props) {
   return (
     <div className={styles.container}>
       <Head>
