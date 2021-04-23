@@ -2,7 +2,13 @@ import Head from "next/head";
 import { Typography } from "antd";
 import { useEffect, useState } from "react";
 
-import { isMacOs, isWindows, isWinPhone } from "react-device-detect";
+import {
+  isAndroid,
+  isIOS,
+  isMacOs,
+  isWindows,
+  isWinPhone,
+} from "react-device-detect";
 
 import Layout, { siteTitle } from "../components/layout.tsx";
 import { getSortedPostsData } from "../lib/posts";
@@ -22,16 +28,15 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   const [isCriOs, setisCriOs] = useState(false);
-  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
     setIsFetching(false);
     setisCriOs(/CriOS/i.test(navigator.userAgent));
   }, []);
-  if ((isMacOs && !isCriOs) || (isWindows && !isWinPhone) || isFetching) {
-    return <h1>PC</h1>;
-  } else {
-    return <h1>Mobile</h1>;
-  }
+
+  return (
+    <div>{isIOS || isAndroid || isWinPhone || isCriOs ? "Mobile" : "PC"}</div>
+  );
 
   // return (
   //   <Layout home>
