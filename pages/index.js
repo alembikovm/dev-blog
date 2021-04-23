@@ -21,12 +21,13 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
-  const { Title, Text } = Typography;
   const [isCriOs, setisCriOs] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
   useEffect(() => {
+    setIsFetching(false);
     setisCriOs(/CriOS/i.test(navigator.userAgent));
   }, []);
-  if ((isMacOs && !isCriOs) || (isWindows && !isWinPhone)) {
+  if ((isMacOs && !isCriOs) || (isWindows && !isWinPhone) || isFetching) {
     return <h1>PC</h1>;
   } else {
     return <h1>Mobile</h1>;
