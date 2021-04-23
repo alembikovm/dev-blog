@@ -34,7 +34,7 @@ export default function Home({ allPostsData }) {
   }, []);
 
   return (
-    <div>{isIOS || isAndroid || isWinPhone || isCriOs ? "Mobile" : "PC"}</div>
+    <h1>{isIOS || isAndroid || isWinPhone || isCriOs ? "Mobile" : "PC"}</h1>
   );
 
   // return (
