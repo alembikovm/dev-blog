@@ -30,7 +30,6 @@ export default function Home({ allPostsData }) {
   const [isCriOs, setisCriOs] = useState(false);
 
   useEffect(() => {
-    setIsFetching(false);
     setisCriOs(/CriOS/i.test(navigator.userAgent));
   }, []);
 
