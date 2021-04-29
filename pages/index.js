@@ -27,14 +27,18 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
-  const [isCriOs, setisCriOs] = useState(false);
+  const [isCriOs, setIsCriOs] = useState(false);
+  const [isAndroidDesktopEmulator, setIsAndroidDesktopEmulator] = useState(false);
 
   useEffect(() => {
-    setisCriOs(/CriOS/i.test(navigator.userAgent));
+    setIsCriOs(/CriOS/i.test(navigator.userAgent));
+    setIsAndroidDesktopEmulator(/X11; Linux x86_64/i.test(navigator.userAgent));
   }, []);
 
   return (
-    <h1>{isIOS || isAndroid || isWinPhone || isCriOs ? "Mobile" : "PC"}</h1>
+    <h1>
+      {isIOS || isAndroid || isWinPhone || isCriOs || isAndroidDesktopEmulator ? "Mobile" : "PC"}
+    </h1>
   );
 
   // return (
